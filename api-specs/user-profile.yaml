@@ -1,0 +1,36 @@
+openapi: 3.0.3
+info:
+  title: User Profile API
+  version: 0.1.0
+servers:
+  - url: http://localhost
+paths:
+  /v1/users/{userId}:
+    get:
+      summary: Get user by ID
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        userId:
+          type: string
+        name:
+          type: string
+        preferences:
+          type: object
+          additionalProperties: true
+
