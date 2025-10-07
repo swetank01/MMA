@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: |
+            services/user-profile/package-lock.json
+      - name: Install deps
+        working-directory: services/user-profile
+        run: npm install --no-audit --no-fund
+      - name: Lint
+        working-directory: services/user-profile
+        run: npm run lint
+      - name: Build
+        working-directory: services/user-profile
+        run: npm run build
+
