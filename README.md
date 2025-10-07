@@ -1,2 +1,2 @@
 # MMA
-Modular microservices Architecture [Blueprint]
+- Modular microservices Architecture [Blueprint]
